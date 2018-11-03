@@ -123,6 +123,7 @@ if(isset($_POST['checkBoxArray'])){
             <th>View Post</th>
             <th>Edit</th>
             <th>Delete</th>
+            <th>Views</th>
         </tr>
     </thead>
     <tbody>
@@ -143,7 +144,8 @@ $post_image =   $row['post_image'];
 $post_content =   $row['post_content'];
 $post_tags =   $row['post_tags']; 
 $post_comment_count =   $row['post_comment_count'];
-$post_status =   $row['post_status']; 
+$post_status =   $row['post_status'];
+$post_views_count =   $row['post_views_count']; 
 
     echo "<tr>";
     ?>
@@ -160,11 +162,12 @@ $post_status =   $row['post_status'];
                         
         while($row = mysqli_fetch_assoc($select_categories_id)){
             $cat_id =   $row['cat_id'];
-            $cat_title =   $row['cat_tittle'];     
+            $cat_title =   $row['cat_tittle'];  
+    
+            echo "<td>$cat_title</td>";
+      
         }
 
-    
-    echo "<td>$cat_title</td>";
     
     
     echo "<td>$post_status</td>";
@@ -175,8 +178,8 @@ $post_status =   $row['post_status'];
     echo "<td><a href='../post.php?p_id={$post_id}'>View Post</a></td>";
     echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
     echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete');  \" href='posts.php?delete={$post_id}'>Delete</a></td>";
-    
-    echo "</tr>";
+    echo "<td>{$post_views_count}</td>";
+    echo "</tr>"; 
     
 }
 
